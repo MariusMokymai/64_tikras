@@ -6,10 +6,12 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import { baseBeUrl } from '../helper';
 import { useAuthContext } from '../store/AuthCtxProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const { login } = useAuthContext();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -33,6 +35,8 @@ export default function LoginPage() {
         console.log('resp ===', resp);
         toast.success('Welcome');
         login(data.email, resp.data.token);
+        // redirect
+        navigate('/shop', { replace: true });
       })
       .catch((error) => {
         console.warn('ivyko klaida:', error);
