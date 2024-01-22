@@ -17,7 +17,7 @@ export default function ShopPage() {
   const [itemsArr, setItemsArr] = useApiData(itemsUrl);
   console.log('itemsArr ===', itemsArr);
   return (
-    <div className='container bg-slate-600'>
+    <div className='container bg-slate-300'>
       <h1 className='text-3xl '>ShopPage</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptatibus, praesentium
