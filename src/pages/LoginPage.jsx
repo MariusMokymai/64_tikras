@@ -5,9 +5,11 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { baseBeUrl } from '../helper';
+import { useAuthContext } from '../store/AuthCtxProvider';
 
 export default function LoginPage() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const { login } = useAuthContext();
 
   const formik = useFormik({
     initialValues: {
@@ -30,6 +32,7 @@ export default function LoginPage() {
       .then((resp) => {
         console.log('resp ===', resp);
         toast.success('Welcome');
+        login(data.email, resp.data.token);
       })
       .catch((error) => {
         console.warn('ivyko klaida:', error);
